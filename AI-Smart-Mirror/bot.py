@@ -22,7 +22,6 @@ wit_ai_token = "Bearer XS72BGVFXONJWJ37UJQYC2CVNLGS6DRL"
 debugger_enabled = True
 camera = 0
 
-
 class Bot(object):
     def __init__(self):
         self.nlg = NLG(user_name=my_name)
