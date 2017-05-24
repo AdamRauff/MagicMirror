@@ -35,16 +35,25 @@ class Bot(object):
         :return:
         """
         while True:
+            # send command to clear screen
             requests.get("http://localhost:8080/clear")
-            if self.vision.recognize_face():
-                print("Found face")
-                if use_launch_phrase:
-                    recognizer, audio = self.speech.listen_for_audio()
-                    if self.speech.is_call_to_action(recognizer, audio):
-                        self.__acknowledge_action()
-                        self.decide_action()
-                else:
+
+            # ------------------------------------------------------------
+            # AR modification 5/24/2017
+            # I want the AI to respond purely to catch phrase
+            # while I want it to be able to recognize a face, I don't 
+            # want to slow down the response by requiring a requisite of a face found
+            # --------------------------------------------------------------------
+
+            # if self.vision.recognize_face():
+            #     print("Found face")
+            if use_launch_phrase:
+                recognizer, audio = self.speech.listen_for_audio()
+                if self.speech.is_call_to_action(recognizer, audio):
+                    self.__acknowledge_action()
                     self.decide_action()
+            else:
+                self.decide_action()
 
     def decide_action(self):
         """
