@@ -1,4 +1,5 @@
 *DS_Store*
 *.swp*
 APIinfo.txt
+*__pycache__*
 
